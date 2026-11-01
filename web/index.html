@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evernorth Health Services | Health plans and care, made simpler (student demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal-950:#032E33; --teal-800:#07555B; --teal-600:#0C7B80; --aqua:#8ED9D1; --mist:#E6F3F1;
+  --paper:#FFFFFF; --sand:#F5F8F7; --ink:#0F2A2E; --muted:#4B6468; --line:#D6E3E1;
+  --orange:#F26A2E; --orange-dk:#C94E17;
+  --bg:var(--paper); --card:#fff; --surface:var(--sand);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#071A1D; --card:#0E2A2E; --surface:#0A2124; --ink:#EAF4F2; --muted:#9FB9B5; --line:#1F4046; --mist:#0F3438; --paper:#071A1D; --teal-600:#4DB8B3; color-scheme: dark; }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Figtree",system-ui,sans-serif}
+a{color:inherit}
+img,svg{max-width:100%}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* utility bar + nav */
+.util{background:var(--teal-950);color:#CFE8E5;font-size:13px}
+.util .wrap{display:flex;justify-content:space-between;gap:16px;padding-top:7px;padding-bottom:7px}
+.util a{text-decoration:none;margin-left:20px}
+.util a:hover{text-decoration:underline}
+.nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:500 26px "Newsreader",serif;letter-spacing:-.2px;color:var(--ink)}
+.logo svg{width:34px;height:34px}
+.links{display:flex;gap:28px;align-items:center}
+.links a{text-decoration:none;font-weight:500;color:var(--ink)}
+.links a:hover{color:var(--teal-600)}
+.btn{display:inline-block;border:0;border-radius:999px;padding:12px 24px;font:600 16px "Figtree",sans-serif;cursor:pointer;text-decoration:none;text-align:center}
+.btn-primary{background:var(--orange);color:#fff}
+.btn-primary:hover{background:var(--orange-dk)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn-ghost:hover{background:var(--mist)}
+.btn-light{background:#fff;color:var(--teal-950)}
+
+/* hero */
+.hero{background:linear-gradient(135deg,var(--teal-950),var(--teal-800) 70%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-140px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(142,217,209,.35),transparent 65%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding-top:72px;padding-bottom:80px;position:relative;z-index:1}
+h1{font:400 clamp(38px,5.4vw,60px)/1.05 "Newsreader",serif;margin:0 0 20px;letter-spacing:-.8px}
+.hero p.lede{font-size:19px;color:#CFE8E5;max-width:50ch;margin:0 0 32px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .btn-ghost{color:#fff;border-color:#fff}
+.hero .btn-ghost:hover{background:rgba(255,255,255,.12)}
+.snap{background:var(--card);color:var(--ink);border-radius:20px;padding:24px;box-shadow:0 30px 60px -30px rgba(0,0,0,.55)}
+.snap-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.snap-h b{font:500 22px "Newsreader",serif}
+.pill{background:var(--mist);color:var(--teal-800);font-size:13px;font-weight:600;padding:4px 12px;border-radius:999px}
+@media (prefers-color-scheme: dark){.pill{color:var(--aqua)}}
+.row{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line)}
+.row span{color:var(--muted)}
+.bar{height:10px;border-radius:99px;background:var(--mist);margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:24%;background:var(--teal-600);border-radius:99px}
+.snap small{display:block;color:var(--muted);margin-top:14px}
+
+/* sections */
+section{padding:72px 0}
+h2{font:400 clamp(30px,3.6vw,42px)/1.12 "Newsreader",serif;margin:0 0 12px;letter-spacing:-.4px}
+.sub{color:var(--muted);max-width:60ch;margin:0 0 36px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{background:var(--surface);border-radius:16px;padding:28px;border:1px solid var(--line)}
+.svc svg{width:40px;height:40px;color:var(--teal-600);margin-bottom:14px}
+.svc h3{margin:0 0 6px;font-size:20px}
+.svc p{margin:0;color:var(--muted)}
+.plans-bg{background:var(--surface)}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column}
+.plan.feat{border:2px solid var(--teal-600)}
+.plan h3{margin:0 0 2px;font:500 21px "Newsreader",serif}
+.plan .cover{font-size:28px;font-weight:700;margin:10px 0 0}
+.plan .price{color:var(--muted);margin:0 0 14px}
+.plan ul{padding-left:18px;margin:0 0 20px;color:var(--muted);flex:1;font-size:15px}
+.plan li{margin-bottom:6px}
+.plan button{align-self:flex-start}
+.assist{background:var(--teal-950);color:#fff;border-radius:24px;padding:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.assist p{color:#CFE8E5;margin:0 0 24px}
+.assist ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.assist li{background:rgba(255,255,255,.08);border-radius:12px;padding:12px 16px}
+footer{background:var(--teal-950);color:#9FC2BE;padding:40px 0;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer p{margin:0;max-width:70ch}
+
+/* voice widget */
+#fab{position:fixed;right:24px;bottom:24px;z-index:40;display:flex;align-items:center;gap:10px;padding:14px 22px;box-shadow:0 14px 30px -10px rgba(0,0,0,.5)}
+#panel{position:fixed;right:24px;bottom:24px;z-index:50;width:min(400px,calc(100vw - 32px));background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 70px -20px rgba(0,0,0,.55);overflow:hidden;display:none}
+#panel.open{display:block}
+.p-top{display:flex;justify-content:space-between;align-items:center;background:var(--teal-800);color:#fff;padding:14px 18px}
+.p-top b{font:500 19px "Newsreader",serif}
+.p-top .st{font-size:13px;color:#CFE8E5;display:flex;align-items:center;gap:7px}
+.dot{width:9px;height:9px;border-radius:50%;background:#7C9C99}
+.live .dot{background:var(--aqua);animation:pulse 1.4s ease-in-out infinite}
+.speaking .dot{background:var(--orange)}
+@keyframes pulse{50%{transform:scale(1.5);opacity:.55}}
+@media (prefers-reduced-motion:reduce){.live .dot{animation:none}html{scroll-behavior:auto}}
+.x{background:none;border:0;color:#fff;font-size:22px;cursor:pointer;line-height:1;padding:4px 8px}
+#log{height:280px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
+.msg{max-width:88%;padding:9px 13px;border-radius:14px;font-size:15px;line-height:1.45}
+.msg.agent{background:var(--card);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.you{background:var(--teal-800);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.empty{margin:auto;text-align:center;color:var(--muted);font-size:14px;max-width:30ch}
+#err{color:#B3402F;margin:0;padding:8px 16px 0;font-size:14px;min-height:1px}
+@media (prefers-color-scheme: dark){#err{color:#F2917F}}
+.p-ctl{display:flex;gap:10px;padding:14px 16px}
+.p-ctl .btn{padding:10px 20px;font-size:15px}
+.p-ctl [hidden]{display:none}
+.btn-end{background:transparent;color:#B3402F;border:1.5px solid #B3402F}
+.p-chat{display:flex;gap:8px;padding:10px 16px 0}
+.p-chat[hidden]{display:none}
+.p-chat input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:999px;padding:10px 16px;font:inherit;background:var(--bg);color:var(--ink)}
+.p-chat input:disabled{opacity:.6}
+.p-chat .btn{padding:10px 18px;font-size:15px}
+#hint{margin:0;padding:8px 16px 0;font-size:14px;color:var(--muted)}
+.typing{opacity:.7}
+.note{margin:0;padding:0 16px 14px;color:var(--muted);font-size:12.5px}
+@media (max-width:900px){
+  .hero .wrap,.assist{grid-template-columns:1fr}
+  .services{grid-template-columns:1fr}
+  .links a:not(.btn){display:none}
+  .util .wrap>div:first-child{display:none}
+  .assist{padding:28px}
+  #panel{right:16px;bottom:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="util"><div class="wrap">
+  <div>Student demo built for the CBIT–Evernorth training programme</div>
+  <div><a href="#">For employers</a><a href="#">For providers</a><a href="#">Contact</a></div>
+</div></div>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#" aria-label="Evernorth Health Services home">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#0C7B80"/><path d="M20 8 L28 28 L20 23 L12 28 Z" fill="#fff"/></svg>
+    Evernorth
+  </a>
+  <nav class="links" aria-label="Main">
+    <a href="#services">Services</a><a href="#plans">Health plans</a><a href="#assistant">Support</a>
+    <a class="btn btn-primary" href="#plans">Find a plan</a>
+  </nav>
+</div></header>
+
+<main>
+<div class="hero"><div class="wrap">
+  <div>
+    <h1>Health plans and care that feel simple.</h1>
+    <p class="lede">Compare cover, check your policy, and get answers about claims, from one place. Or just talk to our assistant and ask.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#plans">Compare plans</a>
+      <button class="btn btn-ghost" type="button" data-open-assistant>Talk to us</button>
+    </div>
+  </div>
+  <div class="snap" aria-label="Sample policy summary">
+    <div class="snap-h"><b>Evernorth Select 5L</b><span class="pill">Active</span></div>
+    <div class="row"><span>Sum insured</span><b>₹5,00,000</b></div>
+    <div class="row"><span>Next premium</span><b>11 Dec 2026</b></div>
+    <div class="row" style="display:block"><div style="display:flex;justify-content:space-between"><span>Claims used</span><b>₹1.2L of ₹5L</b></div><div class="bar"><i></i></div></div>
+    <div class="row"><span>Health check-ups</span><b>0 of 1 used</b></div>
+    <small>Sample data shown for illustration.</small>
+  </div>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <h2>Everything around your health, in one place</h2>
+  <p class="sub">From the pharmacy counter to the claims desk, we connect the pieces so you spend less time on paperwork.</p>
+  <div class="services">
+    <div class="svc"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="6" y="14" width="28" height="12" rx="6" transform="rotate(-35 20 20)"/><path d="M15 12l11 16"/></svg><h3>Pharmacy</h3><p>Home delivery and savings on the medicines you take regularly.</p></div>
+    <div class="svc"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M20 34S6 26 6 15a7 7 0 0 1 14-2 7 7 0 0 1 14 2c0 11-14 19-14 19z"/></svg><h3>Care</h3><p>Check-ups, doctor visits and wellness rewards built into your plan.</p></div>
+    <div class="svc"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 5l13 5v9c0 8-6 13-13 16C13 32 7 27 7 19v-9z"/><path d="M14 20l5 5 8-9"/></svg><h3>Benefits</h3><p>Cashless treatment at network hospitals and a claims desk that answers.</p></div>
+  </div>
+</div></section>
+
+<section id="plans" class="plans-bg"><div class="wrap">
+  <h2>Health plans</h2>
+  <p class="sub">Premiums are per year. Ask the assistant to compare any two, or to recommend one for your family.</p>
+  <div class="plans">
+    <article class="plan"><h3>Essential 3L</h3><div class="cover">₹3,00,000</div><p class="price">₹8,499 / year</p>
+      <ul><li>Cashless at network hospitals</li><li>Day-care procedures covered</li><li>Ambulance up to ₹1,500 per event</li></ul>
+      <button class="btn btn-ghost" type="button" data-ask="Tell me about Evernorth Essential 3L">Ask about this plan</button></article>
+    <article class="plan feat"><h3>Select 5L</h3><div class="cover">₹5,00,000</div><p class="price">₹14,999 / year</p>
+      <ul><li>1 full body check-up a year</li><li>No-claim bonus up to 50%</li><li>10% off Evernorth Home Delivery</li></ul>
+      <button class="btn btn-primary" type="button" data-ask="Tell me about Evernorth Select 5L">Ask about this plan</button></article>
+    <article class="plan"><h3>Premium 10L</h3><div class="cover">₹10,00,000</div><p class="price">₹24,999 / year</p>
+      <ul><li>Maternity cover of ₹50,000</li><li>OPD benefit of ₹10,000 a year</li><li>Priority claims desk</li></ul>
+      <button class="btn btn-ghost" type="button" data-ask="Tell me about Evernorth Premium 10L">Ask about this plan</button></article>
+    <article class="plan"><h3>Elite 25L</h3><div class="cover">₹25,00,000</div><p class="price">₹42,999 / year</p>
+      <ul><li>Cover abroad and air ambulance</li><li>Maternity ₹1,00,000, OPD ₹25,000</li><li>Dedicated relationship manager</li></ul>
+      <button class="btn btn-ghost" type="button" data-ask="Tell me about Evernorth Elite 25L">Ask about this plan</button></article>
+    <article class="plan"><h3>Senior Care 10L</h3><div class="cover">₹10,00,000</div><p class="price">₹31,999 / year</p>
+      <ul><li>For ages 60 to 80</li><li>Home nursing, doctor-at-home visits</li><li>Cardiac and bone density screening</li></ul>
+      <button class="btn btn-ghost" type="button" data-ask="Tell me about Evernorth Senior Care 10L">Ask about this plan</button></article>
+  </div>
+</div></section>
+
+<section id="assistant"><div class="wrap">
+  <div class="assist">
+    <div>
+      <h2>Prefer to talk? Just ask.</h2>
+      <p>Our voice assistant can explain plans, check your policy and premium, recommend cover for your needs, and pass you to a person for claim problems.</p>
+      <button class="btn btn-light" type="button" data-open-assistant>Start a voice chat</button>
+    </div>
+    <ul aria-label="Things you can say">
+      <li>“What plans do you offer?”</li>
+      <li>“Check my policy, my number is 9876543210.”</li>
+      <li>“I need cover for my family with maternity.”</li>
+      <li>“My claim was rejected. I want to talk to someone.”</li>
+    </ul>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p>This is an unofficial student project created for the CBIT–Evernorth training programme. It is not the Evernorth Health Services website, and plan names, prices and policy data are sample data. The assistant does not give medical advice.</p>
+  <p>© 2026 Demo project</p>
+</div></footer>
+
+<button class="btn btn-primary" id="fab" type="button" aria-haspopup="dialog">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+  Talk to us
+</button>
+
+<div id="panel" role="dialog" aria-label="Voice assistant">
+  <div class="p-top">
+    <div><b>Evernorth assistant</b><div class="st"><i class="dot"></i><span id="statusText">Not connected</span></div></div>
+    <button class="x" id="close" type="button" aria-label="Close assistant">×</button>
+  </div>
+  <div id="log" aria-live="polite"><p class="empty" id="empty">Start a voice call or a text chat. Everything you say or type appears here.</p></div>
+  <p id="hint"></p>
+  <p id="err" role="alert"></p>
+  <form class="p-chat" id="chatForm" hidden>
+    <input id="chatInput" type="text" autocomplete="off" placeholder="Connecting to assistant…" aria-label="Type a message" disabled>
+    <button class="btn btn-primary" id="send" type="submit" disabled>Send</button>
+  </form>
+  <div class="p-ctl">
+    <button class="btn btn-primary" id="startVoice" type="button">Start voice call</button>
+    <button class="btn btn-ghost" id="startChat" type="button">Start chat</button>
+    <button class="btn btn-ghost" id="voiceToggle" type="button" hidden>Turn voice on</button>
+    <button class="btn btn-end" id="end" type="button" hidden>End</button>
+  </div>
+  <p class="note">Sample data only. Not medical advice.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/livekit-client@2.15.4/dist/livekit-client.umd.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const { Room, RoomEvent, Track } = LivekitClient;
+let room = null, voiceOn = false, agentReady = false, pendingAsk = null;
+const segments = new Map();
+
+const openPanel = () => { $("panel").classList.add("open"); $("fab").style.display = "none"; };
+const closePanel = () => { reset(); $("panel").classList.remove("open"); $("fab").style.display = ""; };
+function setStatus(t, cls){ $("statusText").textContent = t; $("panel").classList.remove("live","speaking"); if(cls) $("panel").classList.add(...cls.split(" ")); }
+function showError(m){ $("err").textContent = m || ""; }
+function showHint(m){ $("hint").textContent = m || ""; }
+
+function addLine(who, text, segId){
+  $("empty")?.remove();
+  let el = segId && segments.get(segId);
+  if(!el){ el = document.createElement("div"); el.className = "msg " + who; $("log").appendChild(el); if(segId) segments.set(segId, el); }
+  el.textContent = text;
+  $("log").scrollTop = $("log").scrollHeight;
+}
+
+function idleStatus(){ setStatus(voiceOn ? "Listening" : "Chat connected", "live"); }
+
+function markAgentReady(){
+  if(agentReady) return;
+  agentReady = true;
+  $("chatInput").disabled = false; $("send").disabled = false;
+  $("chatInput").placeholder = "Type a message…";
+  if(pendingAsk){ const q = pendingAsk; pendingAsk = null; setTimeout(() => sendChat(q), 400); }
+}
+
+async function sendChat(text){
+  text = (text || "").trim();
+  if(!text || !room) return;
+  if(!agentReady){ showHint("The assistant is still joining. Try again in a moment."); return; }
+  showHint(""); addLine("you", text);
+  try{ await room.localParticipant.sendText(text, { topic: "lk.chat" }); }
+  catch(e){ showError("Couldn't send your message: " + e.message); }
+}
+
+function applyVoiceState(){
+  document.querySelectorAll("audio").forEach(a => a.muted = !voiceOn);
+  $("voiceToggle").textContent = voiceOn ? "Turn voice off" : "Turn voice on";
+  idleStatus();
+}
+
+async function connect(withVoice){
+  showError(""); showHint("");
+  $("startVoice").disabled = true; $("startChat").disabled = true;
+  setStatus("Connecting…");
+  try{
+    const r = await fetch("/api/token");
+    if(!r.ok) throw new Error("token server returned " + r.status);
+    const { url, token } = await r.json();
+    room = new Room();
+    voiceOn = withVoice; agentReady = false;
+    room.on(RoomEvent.TrackSubscribed, track => {
+      if(track.kind === Track.Kind.Audio){ const el = track.attach(); el.autoplay = true; el.muted = !voiceOn; document.body.appendChild(el); }
+    });
+    room.on(RoomEvent.ActiveSpeakersChanged, sp => {
+      if(!room) return;
+      const agentTalking = voiceOn && sp.some(p => p.identity !== room.localParticipant.identity);
+      if(agentTalking) setStatus("Assistant speaking", "live speaking"); else idleStatus();
+    });
+    room.on(RoomEvent.Disconnected, reset);
+    if (typeof room.registerTextStreamHandler === "function") {
+      room.registerTextStreamHandler("lk.transcription", async (reader, info) => {
+        const seg = reader.info.attributes?.["lk.segment_id"] || reader.info.id;
+        const isAgent = info.identity !== room.localParticipant.identity;
+        if(isAgent) markAgentReady();
+        let text = "";
+        for await (const chunk of reader){ text += chunk; addLine(isAgent ? "agent" : "you", text, seg); }
+      });
+    }
+    await room.connect(url, token);
+    if(withVoice) await room.localParticipant.setMicrophoneEnabled(true);
+    $("startVoice").hidden = true; $("startChat").hidden = true;
+    $("voiceToggle").hidden = false; $("end").hidden = false; $("chatForm").hidden = false;
+    applyVoiceState();
+  }catch(e){
+    showError(e.name === "NotAllowedError" ? "Microphone access was blocked. Allow it in your browser settings, or use Start chat." : "Couldn't start: " + e.message + ". Check that the server and the agent are both running.");
+    reset();
+  }
+}
+
+function reset(){
+  const r = room; room = null; r?.disconnect();
+  document.querySelectorAll("audio").forEach(a => a.remove());
+  voiceOn = false; agentReady = false;
+  $("startVoice").hidden = false; $("startChat").hidden = false;
+  $("startVoice").disabled = false; $("startChat").disabled = false;
+  $("voiceToggle").hidden = true; $("end").hidden = true; $("chatForm").hidden = true;
+  $("chatInput").value = ""; $("chatInput").disabled = true; $("send").disabled = true;
+  $("chatInput").placeholder = "Connecting to assistant…";
+  setStatus("Not connected");
+}
+
+$("fab").onclick = openPanel;
+$("close").onclick = closePanel;
+$("startVoice").onclick = () => connect(true);
+$("startChat").onclick = () => connect(false);
+$("end").onclick = reset;
+$("voiceToggle").onclick = async () => {
+  try{
+    voiceOn = !voiceOn;
+    await room.localParticipant.setMicrophoneEnabled(voiceOn);
+    applyVoiceState();
+  }catch(e){
+    voiceOn = false; applyVoiceState();
+    showError(e.name === "NotAllowedError" ? "Microphone access was blocked. You can keep typing instead." : "Couldn't change voice: " + e.message);
+  }
+};
+$("chatForm").onsubmit = e => { e.preventDefault(); const v = $("chatInput").value; $("chatInput").value = ""; sendChat(v); };
+document.querySelectorAll("[data-open-assistant]").forEach(b => b.onclick = openPanel);
+document.querySelectorAll("[data-ask]").forEach(b => b.onclick = () => {
+  openPanel();
+  if(room){ sendChat(b.dataset.ask); }
+  else { pendingAsk = b.dataset.ask; showHint("Press Start chat or Start voice call. Your question will be asked: “" + b.dataset.ask + "”"); }
+});
+document.addEventListener("keydown", e => { if(e.key === "Escape" && $("panel").classList.contains("open")) closePanel(); });
+</script>
+</body>
+</html>
